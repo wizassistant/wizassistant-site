@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wiz Assistant ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: #fefbf9;
+      color: #333;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #ffeede;
+      padding: 3rem 1rem 2rem;
+      position: relative;
+      width: 100%;
+    }
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      padding: 0.3rem 0.6rem;
+      background: #f8cde4;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #333;
+      border: none;
+    }
+    header h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; text-align: center; margin-bottom: 2rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 3.2rem;
+      margin: 0.5rem 0;
+    }
+    .button {
+      display: inline-block; text-align: center; margin: 0 auto;
+      margin: 1rem auto;
+      display: block; margin: 1rem auto;
+      margin: 1rem 0;
+      padding: 0.6rem 1.2rem;
+      background-color: #fbc288;
+      color: #000;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    header p {
+      margin: 1rem auto;
+      max-width: 700px;
+      font-size: 1.125rem;
+    }
+    .main-img {
+      display: block;
+      margin: 1rem auto 0;
+      max-width: 400px;
+      height: auto;
+    }
+    section {
+      padding: 1.5rem 1.5rem 3rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    section h2, section h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2rem; text-align: center; margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    section p, section ul {
+      margin: 0.75rem auto;
+      font-size: 1.125rem;
+      max-width: 800px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      justify-items: center;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #f5f5f5;
+    }
+    footer h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2rem; text-align: center; margin-bottom: 1.5rem;
+    }
+    footer p, footer a {
+      margin: 0.5rem 0;
+      display: block;
+      font-size: 0.8rem;
+    }
+    footer a {
+      color: #333;
+      text-decoration: none;
+    }
+    footer small {
+      color: #555;
+      font-size: 0.9rem;
+    }
+  
+    /* Custom small circle for the 📦 emoji */
+    .offers-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .offers-circle {
+      background-color: #fbc288;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .offers-text {
+      font-size: 1rem;
+      color: #333;
+    }
+    /* Remove default button styling */
+    .button {
+      background: none;
+      padding: 0;
+    }
+
+
+    /* Enlarger le texte dans les cartes de la section Pourquoi choisir */
+    .features-grid .card {
+      font-size: 1.25rem;
+    }
+
+
+    .offers-oval {
+      background-color: #fbc288;
+      border-radius: 20px;
+      padding: 0.6rem 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .offers-text {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+
+    .contact-links {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    footer a {
+      font-size: 1.25rem;
+      color: #333;
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+    footer a:hover {
+      color: #fbc288;
+    }
+
+
+    .offers-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .offers-circle {
+      background-color: #fbc288;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .offers-text {
+      font-size: 1rem;
+      color: #333;
+    }
+
+
+    .offers-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      background-color: rgba(251, 194, 136, 0.3); /* Light orange */
+      border-radius: 25px;
+    }
+    .offers-text {
+      font-size: 1rem;
+      color: #333;
+    }
+    .offers-circle {
+      background-color: #fbc288;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .offers-button {
+      background-color: #f6b38d;
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .offers-circle {
+      background-color: #fbc288;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .offers-text {
+      font-size: 1rem;
+      color: #333;
+    }
+
+</style>
+</head>
+<body>
+  <header>
+    <a href="index_he.html" class="lang-switch">Changer de langue 🌍</a>
+    <h1 style='text-align: center;'>Wiz Assistant ✨</h1>
+    <a href="#offres" class="offers-button" style="background-color: #f6b38d; border-radius: 20px; padding: 0.4rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem;"><span class="offers-circle">📦</span><span class="offers-text" style="color: #333;">Nos Offres</span></a>
+    <p>Votre secrétaire IA 100% personnalisée, formée pour votre activité 📟</p>
+  </header>
+
+  <img src="illustration.png" alt="Assistante IA" class="main-img"/>
+
+  <section>
+    <h2>🔍 Qu’est-ce que Wiz Assistant ?</h2>
+    <p>Wiz Assistant est une révolution pour les entreprises modernes.</p>
+    <p>C’est un assistant virtuel conçu pour répondre aux clients à tout moment, prendre des rendez-vous, ajouter dans l’agenda, fournir des infos précises… le tout de manière 100% personnalisée à votre activité. Que vous soyez coiffeur, coach, esthéticienne, thérapeute, restaurant ou PME – Wiz est là pour vous.</p>
+
+    <h3>Pourquoi c’est important ?</h3>
+    <p>Parce que dans un monde ultra connecté, les clients attendent des réponses immédiates. Attendre 3h ou 1 jour ? C’est fini. Grâce à Wiz, votre business est accessible 24h/24, 7j/7. Vos clients obtiennent une réponse claire, rapide, professionnelle – même à minuit.</p>
+    <p>C’est un confort pour eux, et une tranquillité pour vous. Vous ne perdez plus aucun message. Vous gagnez du temps. Et vous avez l’image d’un pro équipé des meilleurs outils.</p>
+    <p><strong>Et le tout ?</strong> Pour un prix bien plus bas qu’un salarié à temps plein. Sans pause. Sans fatigue. Juste 100% efficacité. C’est bien plus qu’un robot. C’est un vrai partenaire, qui connaît vos tarifs, vos clients, vos horaires, et qui peut répondre comme vous. Il répond aux messages sur WhatsApp, prend des RDV, ajoute dans l’agenda… tout ça automatiquement 🥳</p>
+    <p>Nous venons vous rencontrer (ou en visio), on vous écoute, on comprend vos besoins, et on construit ensemble l’assistant parfait pour votre business. Que vous soyez coiffeur, coach, esthéticienne ou une grande entreprise – Wiz est pour vous 🍭</p>
+  </section>
+
+  <section id="features">
+    <h2>🎯 Pourquoi choisir Wiz Assistant ?</h2>
+    <div class="grid features-grid">
+      <div class="card">💬 <strong>Réponse automatique 24h/24</strong><br>Ne ratez plus jamais un message client</div>
+      <div class="card">📅 <strong>Prise de rendez-vous</strong><br>Ajout dans l’agenda, confirmations, etc.</div>
+      <div class="card">📲 <strong>Intégration WhatsApp</strong><br>Directement sur votre numéro business</div>
+      <div class="card">💡 <strong>IA personnalisée</strong><br>Formée spécialement pour votre activité</div>
+      <div class="card">🤝 <strong>Accompagnement humain</strong><br>On vous aide à chaque étape, sur mesure</div>
+      <div class="card">💰 <strong>Moins cher qu’une secrétaire</strong><br>99€ au départ, 49€/mois en option</div>
+    </div>
+  </section>
+
+  <section id="offres">
+    <h2>💼 Nos Offres</h2>
+    <div class="grid features-grid">
+      <div class="card">
+        <h3>🛠️ Offre Installation - 99€</h3>
+        <p>Rendez-vous personnalisé, on vient jusqu’à vous (ou en visio), on écoute votre besoin, et on construit votre assistant IA sur-mesure.</p>
+      </div>
+      <div class="card">
+        <h3>🌟 Offre Complète - 99€ + 49€/mois</h3>
+        <ul>
+          <li>🔧 Modifications de l’IA à tout moment</li>
+          <li>📝 Mises à jour régulières selon vos besoins</li>
+          <li>👥 Suivi personnalisé par notre équipe</li>
+          <li>📞 Support WhatsApp/Email 7j/7</li>
+          <li>❌ Abonnement sans engagement – vous arrêtez quand vous voulez</li>
+        </ul>
+        <p>Un vrai plus pour ceux qui veulent faire évoluer leur assistant avec leur entreprise !</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h2>📞 Contactez-nous</h2>
+    <p><a href="https://wa.me/33757991469" target="_blank">💬 WhatsApp</a></p>
+    <p><a href="mailto:contact@wizassistant.pro">📧 Email</a></p>
+    <p><a href="https://www.instagram.com/wiz_assistant?igsh=djkweGhzcjUwdHA2" target="_blank">📸 Instagram</a></p>
+    <p><a href="https://www.facebook.com/share/16JttC1ekK/?mibextid=wwXIfr" target="_blank">📘 Facebook</a></p>
+    <small>© 2025 Wiz Assistant. Tous droits réservés.</small>
+  </footer>
+
+<script>
+  document.querySelector('.lang-switch').addEventListener('click', function() {
+    alert('La version hébreu arrive bientôt ✨');
+  });
+</script>
+
+
+<script>
+  document.querySelector('.lang-switch').addEventListener('click', function() {
+    alert('La version hébreu arrive bientôt ✨');
+    window.location.href = 'index.html';  // Redirect to the French site
+  });
+</script>
+
+</body>
+</html>
