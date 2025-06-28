@@ -1,39 +1,34 @@
-import fetch from 'node-fetch';
-
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).send('Method Not Allowed');
+  const message = req.body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0]?.text?.body;
+
+  if (!message) {
+    console.log('❌ Aucun message trouvé dans la requête.');
+    return res.status(400).json({ success: false, error: 'No message received' });
   }
 
-  const { messages } = req.body;
-  const chatbaseApiKey = process.env.CHATBASE_API_KEY;
-  const whatsappToken = process.env.WHATSAPP_TOKEN;
+  console.log('📩 Message reçu sur WhatsApp :', message);
 
-  // Forward message to Chatbase
-  const response = await fetch('https://chatbase.com/api/v1/query', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${chatbaseApiKey}`,
-    },
-    body: JSON.stringify({ query: messages[0].text.body }),
-  });
-  const data = await response.json();
+  // 🔗 Envoi du message à Chatbase
+  try {
+    const chatbaseRes = await fetch('https://www.chatbase.co/api/v1/send-message', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 1cac0499-66bd-40f7-9f3c-ddf39e2bb250' // ← Ta vraie clé API ici
+      },
+      body: JSON.stringify({
+        agentId: 'G27xBX0vckUkWAr_tdr-M',
+        message: message,
+        chatId: req.body.entry[0].id || 'whatsapp-user'
+      })
+    });
 
-  // Send response back to WhatsApp
-  await fetch(`https://graph.facebook.com/v14.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${whatsappToken}`,
-    },
-    body: JSON.stringify({
-      messaging_product: 'whatsapp',
-      to: messages[0].from,
-      text: { body: data.reply },
-    }),
-  });
+    const data = await chatbaseRes.json();
+    console.log('✅ Réponse de Chatbase :', data);
 
-  res.status(200).json({ success: true });
+    res.status(200).json({ success: true, chatbase: data });
+  } catch (error) {
+    console.error('❌ Erreur lors de l’appel à Chatbase :', error);
+    res.status(500).json({ success: false, error: 'Failed to call Chatbase' });
+  }
 }
